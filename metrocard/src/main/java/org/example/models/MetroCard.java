@@ -18,7 +18,7 @@ public class MetroCard {
     public void swipeCard(double amount) {
         this.balance -= amount;
         this.tripCount++;
-        System.out.println("Card swiped for: " + amount);
+//        System.out.printf("%s - Card swiped for: %.2f, balance %.2f %n", number, amount, balance);
     }
 
     public int getTripCount() {

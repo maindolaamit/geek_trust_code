@@ -13,34 +13,31 @@ public class Main {
         // input is a file
         try {
             FileReader file = new FileReader(args[0]);
-            // read the file
+            // read input from file
+            String line = null;
             BufferedReader br = new BufferedReader(file);
-            while (br.readLine() != null) {
-                processInput(br.readLine());
+            while ((line = br.readLine()) != null) {
+                processInput(line);
             }
 
         } catch (IOException e) {
             System.out.println("File not found");
         }
-        // process the file
-        System.out.println("Hello world!");
     }
 
     private static void processInput(String command) {
+        if (command == null) return;
         String[] commandParts = command.split("\\s+");
         String commandType = commandParts[0];
-        String cardNumber = commandParts[1];
-        switch (commandType) {
-            case "BALANCE" -> {
-                int amount = Integer.parseInt(commandParts[2]);
-                metroService.rechargeCard(cardNumber, amount);
-            }
-            case "CHECK_IN" -> {
-                String passengerType = commandParts[2];
-                String station = commandParts[3];
-                metroService.checkIn(cardNumber, passengerType, station);
-            }
-            case "PRINT_SUMMARY" -> metroService.printSummary();
-        }
+        if (commandType.equals("BALANCE")) {
+            String cardNumber = commandParts[1];
+            int amount = Integer.parseInt(commandParts[2]);
+            metroService.rechargeCard(cardNumber, amount);
+        } else if (commandType.equals("CHECK_IN")) {
+            String cardNumber = commandParts[1];
+            String passengerType = commandParts[2];
+            String station = commandParts[3];
+            metroService.checkIn(cardNumber, passengerType, station);
+        } else if (command.equals("PRINT_SUMMARY")) metroService.printSummary();
     }
 }

@@ -15,9 +15,9 @@ public class MetroService {
         if (passenger == PassengerType.ADULT) {
             amount = 200;
         } else if (passenger == PassengerType.KID) {
-            amount = 100;
-        } else if (passenger == PassengerType.SENIOR_CITIZEN) {
             amount = 50;
+        } else if (passenger == PassengerType.SENIOR_CITIZEN) {
+            amount = 100;
         }
         return amount;
     }
@@ -39,7 +39,7 @@ public class MetroService {
         for (MetroStation station : MetroStation.values()) {
             FareCollection collection = repository.getStationCollection(station);
             summary.append("TOTAL_COLLECTION ").append(station.name()).append(" ")
-                    .append(collection.getTotalFareAmount()).append(" ").append(collection.getDiscount()).append("\n");
+                    .append((int)collection.getTotalFareAmount()).append(" ").append((int)collection.getDiscount()).append("\n");
             summary.append("PASSENGER_TYPE_SUMMARY").append("\n");
             // loop over the passenger types for the station
             for (Map.Entry<PassengerType, Integer> entry : collection.getPassegerCountMap().entrySet()) {

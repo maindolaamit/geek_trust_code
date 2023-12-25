@@ -49,8 +49,9 @@ public class MetroRepository {
         if (diff < 0.0) {
             fee = Math.abs(diff * 0.02);
             diff = Math.abs(diff);
-            String format = String.format("Insufficient balance %.2f auto recharge initiated with %.2f service fee", diff, fee);
-            System.out.println(format);
+//            String format = String.format("%s - Insufficient balance %.2f auto recharge initiated with %.2f service fee",
+//                    cardNumber, diff, fee);
+//            System.out.println(format);
         } else diff = 0.0;
 
         // recharge the card, add fare, fee and discount to the collection and swipe the card
